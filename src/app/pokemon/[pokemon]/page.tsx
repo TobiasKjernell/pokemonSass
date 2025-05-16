@@ -5,7 +5,7 @@ import DisplayPokemon from '@/components/DisplayPokemon';
 
 let pokemonSpec: IPokemon;
 
-const SpecificPokemon = async ({ params }: { params: { pokemon: string } }) => {
+const SpecificPokemon = async ({ params }: { params: { pokemon: any } }) => {
 
     const { pokemon } = await params;
     try {
