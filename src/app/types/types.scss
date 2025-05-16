@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.pokemon {
+    &__types {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        text-transform: capitalize;
+        
+        @include page-layout($indent__xl, auto);
+        
+        a {
+            flex: 0 0 150px;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+    }
+
+    &__title {
+        text-transform: capitalize;
+        text-align: center;
+        @include page-layout($indent__xl, auto);
+    }
+    
+}
+
+

@@ -1,0 +1,95 @@
+@mixin flexrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flexcol {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@mixin page-layout($yAxis, $xAxis) {
+    max-width: 1440px;
+    margin: $yAxis $xAxis;
+}
+
+@mixin menu-item($accentColor: $color-gray) {
+    border-bottom: 7px solid $accentColor;
+    color: $color-primary;
+    padding: $indent__xl;
+
+    font: {
+        family: $font-orbitron;
+        size: 1.2rem;
+        weight: 700;
+    }
+
+    text: {
+        align: center;
+        decoration: none;
+        transform: capitalize;
+    }
+
+    &:hover,
+    &.active {
+        background-color: $accentColor;
+    }
+}
+
+@mixin responsive-tablet {
+    @media screen and (min-width: $breakpoint-tablet) {
+        @content;
+    }
+}
+
+@mixin button-style($color: $color-torch-red, $cursor: pointer){
+    border: 2px solid $color;
+    color: $color;
+    border-radius: 10px;
+    padding: $indent__base;
+    background-color: lighten($color, 40);
+    cursor: pointer;
+}
+
+@mixin home-grid__item($color: #333) {
+    text-align: center;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+
+    @if ($color == $color-minsk) {
+        color: $color-malibu;
+    }
+
+    @else if ($color == $color-malibu) {
+        color: $color-white;
+        flex-direction: column-reverse;
+    }
+
+    @else if ($color == $color-torch-red) {
+        color: $color-minsk;
+    }
+
+    @else {
+        color: $color-gray;
+    }
+
+    font: {
+        family: $font-orbitron;
+    }
+
+    h3 {
+        background-color: $color;
+        margin: 0;
+        padding: $indent__s;
+    }
+}
+
+@mixin responsive-mobile {
+    @media screen and (min-width: $breakpoint-mobile) {
+        @content;
+    }
+}
