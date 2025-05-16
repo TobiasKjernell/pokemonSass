@@ -1,26 +1,39 @@
+'use client'
+import { useEffect, useState } from 'react';
 import './types.scss'
-let allTypes: string[];
+
+interface IPokemonTypes {
+    types: string[];
+}
 
 const Types = () => {
+    const [pokemonTypes, setPokemonTypes] = useState<IPokemonTypes | null>(null);
 
     const fetchTypes = async () => {
-
         try {
             const res = await fetch('https://pokeapi.co/api/v2/type');
             const data = await res.json();
 
-            allTypes = data.results.map((item: { name: string; }) => item.name);
+            const allTypes: IPokemonTypes = {
+                types: data.results.map((item: { name: string; }) => item.name)
+            } 
+
+           
+            setPokemonTypes(allTypes);
+
 
         } catch (error) {
             console.log(error)
         }
     }
 
-    fetchTypes();
+    useEffect(() => {
+        fetchTypes();
+    }, [])
 
     return (
         <div className="pokemon__types">
-            {allTypes &&  allTypes.filter((_, index) => index < 18).map((item: string, index: number) => <a href={`/types/${item}`} className={`pokemon__content--${item}`} key={index}>{item}</a>)}
+            {pokemonTypes && pokemonTypes.types.filter((_, index) => index < 18).map((item: string, index: number) => <a href={`/types/${item}`} className={`pokemon__content--${item}`} key={index}>{item}</a>)}
         </div>
 
     )

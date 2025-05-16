@@ -14,6 +14,7 @@ let data: IPokemon[];
 let typeParam: string = "";
 const TypePage = ({ params }: { params: Promise<{ type: string }> }) => {
     const [isLoading, setIsLoading] = useState(false);
+    
     useEffect(() => {
         const fetchTypes = async () => {
             try {
